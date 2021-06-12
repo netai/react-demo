@@ -1,2 +1,2 @@
-# react-demo
-react js project basic structure
+# React Demo Project
+React js basic project structure
