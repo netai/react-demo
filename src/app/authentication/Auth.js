@@ -16,7 +16,6 @@ class Auth extends Component {
     render() {
         return (
             <div className="auth">
-                Auth window
                 <Redirect exact path="/" to="/auth/login" />
                 <Route path="/auth/login" component={Login} />
             </div>

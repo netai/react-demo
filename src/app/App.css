@@ -1,0 +1,9 @@
+.app-container .app-body {
+  min-height: 20rem;
+}
+.app-container .page-header {
+  border-bottom: 2px solid #ccc;
+  padding-bottom: 0.5rem;
+  margin-bottom: 1rem;
+}
+/*# sourceMappingURL=App.css.map */

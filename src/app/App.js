@@ -1,11 +1,14 @@
 import './App.css';
 import React, { Suspense, lazy, Component } from 'react';
 import { BrowserRouter as Router, Route, Switch, Redirect } from 'react-router-dom';
+import Container from 'react-bootstrap/Container';
+import Footer from './common/footer/Footer';
+import Header from './common/header/Header';
 import NotFound from './common/not-found/NotFound';
 const Auth = lazy(() => import('./authentication/Auth'));
 
 class App extends Component {
-  
+
   constructor(props) {
     super(props);
 
@@ -14,9 +17,9 @@ class App extends Component {
 
   render() {
     return (
-      <div className="app">
-        <header className="app-header"></header>
-        <article>
+      <div className="app-container">
+        <Header />
+        <Container className="app-body" as="article">
           <Router>
             <Suspense fallback={<div>Loading...</div>}>
               <Switch>
@@ -26,8 +29,8 @@ class App extends Component {
               </Switch>
             </Suspense>
           </Router>
-        </article>
-        <footer className="app-footer"></footer>
+        </Container>
+        <Footer />
       </div>
     );
   }
