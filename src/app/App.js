@@ -4,8 +4,10 @@ import { BrowserRouter as Router, Route, Switch, Redirect } from 'react-router-d
 import Container from 'react-bootstrap/Container';
 import Footer from './common/footer/Footer';
 import Header from './common/header/Header';
-import NotFound from './common/not-found/NotFound';
-const Auth = lazy(() => import('./authentication/Auth'));
+import NotFound from './components/not-found/NotFound';
+import Login from './components/login/Login';
+
+//const Auth = lazy(() => import('./components/Login'));
 
 class App extends Component {
 
@@ -23,8 +25,8 @@ class App extends Component {
           <Router>
             <Suspense fallback={<div>Loading...</div>}>
               <Switch>
-                <Redirect exact path="/" to="/auth/login" />
-                <Route path="/auth" component={Auth} />
+                <Redirect exact path="/" to="/login" />
+                <Route exact path="/login" component={Login} />
                 <Route path="**" component={NotFound} />
               </Switch>
             </Suspense>
