@@ -7,7 +7,7 @@ import Header from './common/header/Header';
 import NotFound from './components/not-found/NotFound';
 import Login from './components/login/Login';
 
-//const Auth = lazy(() => import('./components/Login'));
+const Student = lazy(() => import('./modules/student/Student'));
 
 class App extends Component {
 
@@ -27,6 +27,7 @@ class App extends Component {
               <Switch>
                 <Redirect exact path="/" to="/login" />
                 <Route exact path="/login" component={Login} />
+                <Route exact path="/student" component={Student} />
                 <Route path="**" component={NotFound} />
               </Switch>
             </Suspense>

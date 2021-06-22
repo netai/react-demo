@@ -16,13 +16,15 @@ class Login extends Component {
     return (
       <div className="app-login">
         <div className="login-window">
-          <h3 className="page-header">Login</h3>
+          <div className="page-header">
+            <h3 className="page-title">Login</h3>
+          </div>
           <Form>
-            <Form.Group controlId="formBasicEmail">
-              <Form.Label>Email address</Form.Label>
-              <Form.Control type="email" placeholder="Enter email" />
+            <Form.Group controlId="username">
+              <Form.Label>Username</Form.Label>
+              <Form.Control type="text" placeholder="Username" />
             </Form.Group>
-            <Form.Group controlId="formBasicPassword">
+            <Form.Group controlId="password">
               <Form.Label>Password</Form.Label>
               <Form.Control type="password" placeholder="Password" />
             </Form.Group>

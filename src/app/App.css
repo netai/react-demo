@@ -1,9 +1,13 @@
 .app-container .app-body {
   min-height: 20rem;
+  margin-bottom: 1rem;
 }
 .app-container .page-header {
-  border-bottom: 2px solid #ccc;
+  display: block;
+}
+.app-container .page-header .page-title {
   padding-bottom: 0.5rem;
-  margin-bottom: 1rem;
+  display: block;
+  border-bottom: 2px solid #ccc;
 }
 /*# sourceMappingURL=App.css.map */
