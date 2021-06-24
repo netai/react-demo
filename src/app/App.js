@@ -1,42 +1,41 @@
 import './App.css';
-import React, { Suspense, lazy, Component } from 'react';
+import React, { Suspense, lazy } from 'react';
 import { BrowserRouter as Router, Route, Switch, Redirect } from 'react-router-dom';
 import Container from 'react-bootstrap/Container';
-import Footer from './common/footer/Footer';
-import Header from './common/header/Header';
+import Footer from './common/components/footer/Footer';
+import Header from './common/components/header/Header';
 import NotFound from './components/not-found/NotFound';
 import Login from './components/login/Login';
+import { ServerProvider } from './common/context/Server';
+import { GlobalProvider } from './common/context/Global';
+import AuthRoute from './common/route-guard/AuthRoute';
 
-const Student = lazy(() => import('./modules/student/Student'));
 
-class App extends Component {
+const Product = lazy(() => import('./modules/product/Product'));
 
-  constructor(props) {
-    super(props);
-
-    this.state = {};
-  }
-
-  render() {
-    return (
-      <div className="app-container">
-        <Header />
-        <Container className="app-body" as="article">
-          <Router>
-            <Suspense fallback={<div>Loading...</div>}>
-              <Switch>
-                <Redirect exact path="/" to="/login" />
-                <Route exact path="/login" component={Login} />
-                <Route exact path="/student" component={Student} />
-                <Route path="**" component={NotFound} />
-              </Switch>
-            </Suspense>
-          </Router>
-        </Container>
-        <Footer />
-      </div>
-    );
-  }
+const App = () => {
+  return (
+    <div className="app-container">
+      <GlobalProvider>
+      <Header />
+      <Container className="app-body" as="article">
+          <ServerProvider>
+            <Router>
+              <Suspense fallback={<div>Loading...</div>}>
+                <Switch>
+                  <Redirect exact path="/" to="/login" />
+                  <Route exact path="/login" component={Login} />
+                  <AuthRoute path="/product/*" component={Product}/>
+                  <Route path="**" component={NotFound} />
+                </Switch>
+              </Suspense>
+            </Router>
+          </ServerProvider>
+      </Container>
+      <Footer />
+      </GlobalProvider>
+    </div>
+  );
 }
 
 export default App;

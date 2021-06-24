@@ -3,7 +3,7 @@ import './NotFound.css';
 import React from 'react';
 import Alert from 'react-bootstrap/Alert';
 
-function NotFound() {
+const NotFound = () => {
     return (
         <div className="not-found">
             <Alert variant="danger">
