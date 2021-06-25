@@ -2,18 +2,18 @@ import './Header.css';
 import React from 'react';
 import Navbar from 'react-bootstrap/Navbar';
 import Button from 'react-bootstrap/Button';
-import { useGlobal } from '../../context/Global';
 
-function Header(props) {
-    const global = useGlobal();
-    
-    console.log(global.value.isAutheticated);
+import { useGlobalContext } from '../../context/Global';
+
+const Header = (props) => {
+
+    const [globalState] = useGlobalContext();
 
     return (
         <header className="app-header">
             <Navbar bg="dark" variant="dark">
                 <Navbar.Brand>React Demo</Navbar.Brand>
-                {global.value.isAutheticated && <Button variant="outline-danger" className="btn-logout" size="sm">Logout</Button>}
+                {globalState.isLogin && <Button variant="outline-danger" className="btn-logout" size="sm">Logout</Button>}
             </Navbar>
         </header>
     );

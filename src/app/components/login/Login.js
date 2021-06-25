@@ -5,24 +5,24 @@ import React from 'react';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 
-import { useServer } from '../../common/context/Server';
-import { useGlobal } from '../../common/context/Global';
+import { useGlobalContext } from '../../shared/context/Global';
+import ServerService from '../../shared/services/Server';
 
 const Login = (props) => {
 
-  const server = useServer();
-  const global = useGlobal();
+  const server = ServerService();
+  const [, globalDispatch] = useGlobalContext();
 
   const init = () => {
     const userData = sessionStorage.getItem('USER');
-    if(userData) {
+    if (userData) {
       const reqParam = {
         token: userData.token
       }
       server.get(Config.API.LOGIN_BY_TOKEN, reqParam).then(res => {
-        global.fn.set('user', res.data);
-        global.fn.set('isAutheticated', true);
         sessionStorage.setItem('USER', JSON.stringify(res.data));
+        globalDispatch({ data: res.data, type: 'UPDATE_USER' });
+        globalDispatch({ data: true, type: 'UPDATE_LOGIN' });
         props.history.push('/product/list');
       });
     }
@@ -37,9 +37,9 @@ const Login = (props) => {
       password: ''
     }
     server.post(Config.API.LOGIN, reqbody).then(res => {
-      global.fn.set('user', res.data);
-      global.fn.set('isAutheticated', true);
       sessionStorage.setItem('USER', JSON.stringify(res.data));
+      globalDispatch({ data: res.data, type: 'UPDATE_USER' });
+      globalDispatch({ data: true, type: 'UPDATE_LOGIN' });
       props.history.push('/product/list');
     });
   }

@@ -1,14 +1,14 @@
 import React from 'react';
 import { Route, Redirect } from "react-router-dom";
 
-import { useGlobal } from '../../common/context/Global';
+import { useGlobalContext } from '../context/Global';
 
 const AuthRoute = ({ component: Component, ...rest }) => {
-    const global = useGlobal();
+    const [globalState] = useGlobalContext();
 
     return (
         <Route {...rest} render={(props) => (
-            global.value.isAutheticated === true
+            globalState.isLogin === true
                 ? <Component {...props} />
                 : <Redirect to={{pathname: '/login', state: {from: props.location}}} />
         )} />
